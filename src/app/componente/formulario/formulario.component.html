@@ -39,6 +39,7 @@
           <mat-form-field class="full-width">
             <mat-label>Dirección:</mat-label>
             <textarea matInput [(ngModel)]="compa.address" placeholder="Address" formControlName="address"></textarea>
+            <mat-hint align="end">{{compa.address.length}} / 200</mat-hint>
             @if (addressForm.controls['address'].hasError('required')) {
               <mat-error>Address is <strong>required</strong></mat-error>
             }
@@ -51,6 +52,7 @@
             <mat-form-field class="full-width">
               <mat-label>Dirección 2:</mat-label>
               <textarea matInput [(ngModel)]="compa.address2" placeholder="Address 2" formControlName="address2"></textarea>
+              <mat-hint align="end">{{compa.address2.length}} / 200</mat-hint>
             </mat-form-field>
           } @else {
             <button mat-button type="button" (click)="hasUnitNumber = !hasUnitNumber">
@@ -104,7 +106,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Submit</button>
+      <button mat-raised-button [disabled]="addressForm.invalid" color="primary" type="submit">Submit</button>
     </mat-card-actions>
   </mat-card>
 </form>

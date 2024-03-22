@@ -17,7 +17,7 @@ export class FormularioComponent {
 
   //Binding del formulario
   compa : Compania = {company:"",firstName:"",lastName:"",address:"",address2:"",city:"",state:"",postalCode:"",shipping:""};
-  compas: Companias[]=[];   //Array de compañias
+  compas: Compania[]=[];   //Array de compañias
 
   //Control del formulario
   private fb = inject(FormBuilder);
@@ -100,6 +100,7 @@ export class FormularioComponent {
   ];
 
   onSubmit(): void {
-    alert('Thanks!');
+    this.compas.push(this.compa);
+    alert('Thanks! Añadida ciudad'  + this.compa.company);
   }
 }
