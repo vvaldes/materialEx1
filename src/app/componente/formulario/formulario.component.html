@@ -7,14 +7,18 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Company" formControlName="company">
+            <!-- POnemos etiqueta -->
+            <mat-label>Copañia:</mat-label>
+            <!-- Realizamos binding con [(ngModel)]="compa.company" -->
+            <input matInput [(ngModel)]="compa.company" placeholder="Company" formControlName="company">
           </mat-form-field>
         </div>
       </div>
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="First name" formControlName="firstName">
+            <mat-label>Primer Apellido:</mat-label>
+            <input matInput [(ngModel)]="compa.firstName" placeholder="First name" formControlName="firstName">
             @if (addressForm.controls['firstName'].hasError('required')) {
               <mat-error>First name is <strong>required</strong></mat-error>
             }
@@ -22,7 +26,8 @@
         </div>
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Last name" formControlName="lastName">
+            <mat-label>Segundo apellido:</mat-label>
+            <input matInput [(ngModel)]="compa.lastName" placeholder="Last name" formControlName="lastName">
             @if (addressForm.controls['lastName'].hasError('required')) {
               <mat-error>Last name is <strong>required</strong></mat-error>
             }
@@ -32,7 +37,8 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <textarea matInput placeholder="Address" formControlName="address"></textarea>
+            <mat-label>Dirección:</mat-label>
+            <textarea matInput [(ngModel)]="compa.address" placeholder="Address" formControlName="address"></textarea>
             @if (addressForm.controls['address'].hasError('required')) {
               <mat-error>Address is <strong>required</strong></mat-error>
             }
@@ -43,7 +49,8 @@
         <div class="col">
           @if (hasUnitNumber) {
             <mat-form-field class="full-width">
-              <textarea matInput placeholder="Address 2" formControlName="address2"></textarea>
+              <mat-label>Dirección 2:</mat-label>
+              <textarea matInput [(ngModel)]="compa.address2" placeholder="Address 2" formControlName="address2"></textarea>
             </mat-form-field>
           } @else {
             <button mat-button type="button" (click)="hasUnitNumber = !hasUnitNumber">
@@ -55,7 +62,8 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="City" formControlName="city">
+            <mat-label>Ciudad:</mat-label>
+            <input matInput [(ngModel)]="compa.city" placeholder="City" formControlName="city">
             @if (addressForm.controls['city'].hasError('required')) {
               <mat-error>City is <strong>required</strong></mat-error>
             }
@@ -63,7 +71,8 @@
         </div>
         <div class="col">
           <mat-form-field class="full-width">
-            <mat-select placeholder="State" formControlName="state">
+            <mat-label>Estado:</mat-label>
+            <mat-select [(ngModel)]="compa.state" placeholder="State" formControlName="state">
               @for (state of states; track state) {
                 <mat-option [value]="state.abbreviation">{{ state.name }}</mat-option>
               }
@@ -77,14 +86,16 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput #postalCode maxlength="5" placeholder="Postal Code" type="number" formControlName="postalCode">
+            <mat-label>Código Postal:</mat-label>
+            <input matInput #postalCode maxlength="5" [(ngModel)]="compa.postalCode" placeholder="Postal Code" type="number" formControlName="postalCode">
             <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
           </mat-form-field>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <mat-radio-group formControlName="shipping">
+          <mat-label>Envio:</mat-label>
+          <mat-radio-group [(ngModel)]="compa.shipping" formControlName="shipping">
             <mat-radio-button value="free">Free Shipping</mat-radio-button>
             <mat-radio-button value="priority">Priority Shipping</mat-radio-button>
             <mat-radio-button value="nextday">Next Day Shipping</mat-radio-button>

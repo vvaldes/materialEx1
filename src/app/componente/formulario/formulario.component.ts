@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 
 import { FormBuilder, Validators } from '@angular/forms';
+import {Compania,Companias} from './compania';
+
 
 
 @Component({
@@ -8,7 +10,16 @@ import { FormBuilder, Validators } from '@angular/forms';
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.css'
 })
+
+
+
 export class FormularioComponent {
+
+  //Binding del formulario
+  compa : Compania = {company:"",firstName:"",lastName:"",address:"",address2:"",city:"",state:"",postalCode:"",shipping:""};
+  compas: Companias[]=[];   //Array de compañias
+
+  //Control del formulario
   private fb = inject(FormBuilder);
   addressForm = this.fb.group({
     company: null,
