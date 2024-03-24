@@ -1,4 +1,5 @@
 export interface Compania {
+    id: number;
     company: string;
     firstName: string;
     lastName: string;
@@ -8,6 +9,8 @@ export interface Compania {
     state: string;
     postalCode: string;
     shipping: string;
+    people: number;
+    date: Date;
   }
 
   export interface Companias {

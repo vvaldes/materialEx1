@@ -16,7 +16,7 @@ import {Compania,Companias} from './compania';
 export class FormularioComponent {
 
   //Binding del formulario
-  compa : Compania = {company:"",firstName:"",lastName:"",address:"",address2:"",city:"",state:"",postalCode:"",shipping:""};
+  compa : Compania = {id:0,company:"",firstName:"",lastName:"",address:"",address2:"",city:"",state:"",postalCode:"",shipping:"",people:0,date:new Date(Date.now())};
   compas: Compania[]=[];   //Array de compañias
 
   //Control del formulario
@@ -32,10 +32,15 @@ export class FormularioComponent {
     postalCode: [null, Validators.compose([
       Validators.required, Validators.minLength(5), Validators.maxLength(5)])
     ],
+    datecreated: null,
+    people: null,
     shipping: ['free', Validators.required]
   });
 
   hasUnitNumber = false;
+  datecreated = Date();
+  people=0;
+  
 
   states = [
     {name: 'Alabama', abbreviation: 'AL'},

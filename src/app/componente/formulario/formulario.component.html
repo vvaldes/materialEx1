@@ -104,6 +104,22 @@
           </mat-radio-group>
         </div>
       </div>
+      <div class="col-md-6">
+        <mat-form-field class="full-width">
+          <mat-label>Fecha creacción:</mat-label>
+          <input matInput [(ngModel)]="compa.date" [matDatepicker]="picker" placeholder="Fecha creacción" formControlName="datecreated" >
+          <mat-datepicker-toggle matSuffix [for]="picker">
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+          <mat-label>Habitantes:</mat-label>
+          <!-- <mat-slider [(ngModel)]="minimo" formControlName="minimo" thumbLabel min="0" max="5000" step="1" showTickMarks #ngSlider> -->
+            <mat-slider  formControlName="people" thumbLabel min="0" max="5000" step="1" showTickMarks discrete #ngSlider>
+            <!-- <input matSliderThumb /><input matSliderThumb (change)="minimomaximo()" #ngSliderThumb="matSliderThumb" />  -->
+            <input matSliderThumb  [(value)]="compa.people"   #ngSliderThumb="matSliderThumb" />
+            <!-- <input matSliderThumb /><input matSliderThumb  #ngSliderThumb="matSliderThumb" /> -->
+          </mat-slider>
+        </div>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button [disabled]="addressForm.invalid" color="primary" type="submit">Submit</button>
