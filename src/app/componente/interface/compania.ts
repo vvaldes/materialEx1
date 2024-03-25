@@ -16,3 +16,14 @@ export interface Compania {
   export interface Companias {
     companias: Compania[]; //usuarios
   }
+
+export interface estado {
+  name: string,
+  abbreviation: string;
+}
+
+export interface estados {
+  states: estado [];
+}
+
+
