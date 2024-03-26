@@ -16,7 +16,6 @@ import {EstadosService} from '../../servicio/estados.service';
 export class TablaFormularioComponent implements OnInit  {
   //Binding del formulario
   compa : Compania = {id:0,company:"",firstName:"",lastName:"",address:"",address2:"",city:"",state:"",postalCode:"",shipping:"",people:0,date:new Date(Date.now())};
-  compa1 : Compania = this.compa;
   compas: Compania[]=[];   //Array de compañias
   nombre = '';
   modificar = false;
@@ -61,16 +60,26 @@ export class TablaFormularioComponent implements OnInit  {
   }
 
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+  
   onSubmit(): void {
      //Añadimos indice
      this.compa.id = this.compas.length + 1;
+     let compa1 = this.compa;
      const data = this.dataSource.data;
      //this.dataSource.data.push(this.compa);
-     this.compas.push(this.compa);
+     this.compas.push(compa1);
+     //data.push(this.compa);
+     //if (this.dataSource) {
+     //   delete this.dataSource;
+     //}
      
-
-     this.dataSource.data = this.compas;
-     console.log("compas:" + this.compas);
+     
+     //this.dataSource.data = data;
+     this.dataSource = new MatTableDataSource<Compania>(this.compas);
+     console.log("compas:" + this.compas.toString);
 
     alert('Thanks! Añadida ciudad'  + this.compa.company);
   }
