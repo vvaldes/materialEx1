@@ -17,7 +17,7 @@ import {EstadosService} from '../../servicio/estados.service';
 export class FormularioComponent {
 
   //Binding del formulario
-  compa : Compania = {id:0,company:"",firstName:"",lastName:"",address:"",address2:"",city:"",state:"",postalCode:"",shipping:"",people:0,date:new Date(Date.now())};
+  compa : Compania = {id:0,company:"",firstName:"",lastName:"",address:"",address2:"",city:"",state:"",postalCode:"",shipping:0,people:0,date:new Date(Date.now())};
   compas: Compania[]=[];   //Array de compañias
 
   //Control del formulario
@@ -26,7 +26,7 @@ export class FormularioComponent {
     company: null,
     firstName: [null, Validators.required],
     lastName: [null, Validators.required],
-    address: [null, Validators.required],
+    address: [null, Validators.required], 
     address2: null,
     city: [null, Validators.required],
     state: [null, Validators.required],

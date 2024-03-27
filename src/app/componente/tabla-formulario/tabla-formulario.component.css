@@ -25,3 +25,17 @@
 .col:last-child {
   margin-right: 0;
 }
+
+
+table {
+  width: 90%;
+  margin:1rem auto;
+}
+
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  margin:1rem auto;
+  box-shadow: -1px 3px 66px 0px rgba(0,0,0,0.75);
+  padding: 1rem;
+}

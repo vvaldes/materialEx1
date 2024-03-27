@@ -1,4 +1,8 @@
 <div class="contenedor" >
+  <mat-form-field>
+    <mat-label >Buscar:</mat-label>
+    <input matInput (keyup)="filtrar($event)" placeholder="buscar" >
+  </mat-form-field>
 
   <!--<div class="mat-elevation-z8" *ngIf="administrador || modificarTienda">-->
   <div class="mat-elevation-z8" >
@@ -18,15 +22,15 @@
         <td mat-cell *matCellDef="let compa" > {{compa.company}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="firstName">
+       <ng-container matColumnDef="firstName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header > Primer Apellido </th>
         <td mat-cell *matCellDef="let compa" > {{compa.firstName}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="lastName">
+      <!--<ng-container matColumnDef="lastName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Segundo Apellido  </th>
         <td mat-cell *matCellDef="let compa" > {{compa.lastName}} </td>
-      </ng-container>
+      </ng-container> -->
 
 
       <ng-container matColumnDef="operaciones">
@@ -140,8 +144,28 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <mat-label>Código Postal:</mat-label>
-            <input matInput #postalCode maxlength="5" [(ngModel)]="compa.postalCode" placeholder="Postal Code" type="number" formControlName="postalCode">
+            <mat-label>Código Postal:<strong>(Longitud de 5)</strong></mat-label>
+            <input matInput #postalCode maxlength="5"  [(ngModel)]="compa.postalCode" placeholder="Postal Code"  
+            formControlName="postalCode" required>
+            <!--<mat-error *ngIf="addressForm.controls['postalCode'].hasError('required')">
+              Codigo Postal  <strong>(Longitud de 5)</strong>
+            </mat-error>
+            <mat-error *ngIf="addressForm.controls['postalCode'].hasError('minlength') || addressForm.controls['postalCode'].hasError('maxlength')">
+              La longitud es de 5 números y obligatorio
+            </mat-error>  -->
+            <div *ngIf="addressForm.controls['postalCode'].invalid && addressForm.controls['postalCode'].errors &&
+               (addressForm.controls['postalCode'].dirty || addressForm.controls['postalCode'].touched)">
+                <mat-error *ngIf="addressForm.controls['postalCode'].invalid">{{getErrorMessage()}}</mat-error>
+              <!-- <mat-error *ngIf="addressForm.controls['postalCode'].hasError('required')">
+                Codigo Postal es requerido <strong>(Longitud de 5)</strong>
+              </mat-error>
+              <mat-error *ngIf="addressForm.controls['postalCode'].hasError('minlength')">
+                La longitud es de 5 números y obligatorio
+              </mat-error>
+              <mat-error *ngIf="addressForm.controls['postalCode'].hasError('maxlength')">
+                La longitud es de 5 números y obligatorio
+              </mat-error>  -->
+            </div> 
             <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
           </mat-form-field>
         </div>
@@ -150,9 +174,10 @@
         <div class="col">
           <mat-label>Envio:</mat-label>
           <mat-radio-group [(ngModel)]="compa.shipping" formControlName="shipping">
-            <mat-radio-button value="free">Free Shipping</mat-radio-button>
+            <mat-radio-button   *ngFor="let op of shippings1" [value]="op.valor" name="gen">{{op.activo}}</mat-radio-button>
+            <!-- <mat-radio-button value="free">Free Shipping</mat-radio-button>
             <mat-radio-button value="priority">Priority Shipping</mat-radio-button>
-            <mat-radio-button value="nextday">Next Day Shipping</mat-radio-button>
+            <mat-radio-button value="nextday">Next Day Shipping</mat-radio-button> -->
           </mat-radio-group>
         </div>
       </div>
@@ -174,7 +199,13 @@
         </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button [disabled]="addressForm.invalid" color="primary" type="submit">Submit</button>
+      <div class="col">
+        <button *ngIf="!modificar" mat-raised-button [disabled]="addressForm.invalid" (click)="submit=true;" color="primary" type="submit">Insertar</button>
+        <button *ngIf="modificar" mat-raised-button [disabled]="addressForm.invalid" (click)="submit=true;" color="primary" type="submit">Modificar</button>
+       </div>
+       <div class="col">
+        <button  mat-raised-button  color="primary" type="submit"  (click)="submit=false;inicializar()" matTooltip="Inicializar todos los campos para añadir un artículo nuevo">Inicializar</button>
+    </div>
     </mat-card-actions>
   </mat-card>
 </form>
