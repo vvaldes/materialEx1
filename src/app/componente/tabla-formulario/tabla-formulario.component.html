@@ -57,7 +57,7 @@
 <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="shipping-card">
     <mat-card-header>
-      <mat-card-title>Shipping Information</mat-card-title>
+      <mat-card-title style="text-align: center;">Formulario Reactivo</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div class="row">
@@ -76,7 +76,7 @@
             <mat-label>Primer Apellido:</mat-label>
             <input matInput [(ngModel)]="compa.firstName" placeholder="First name" formControlName="firstName">
             @if (addressForm.controls['firstName'].hasError('required')) {
-              <mat-error>First name is <strong>required</strong></mat-error>
+              <mat-error>Primer apellido es <strong>obligatorio</strong></mat-error>
             }
           </mat-form-field>
         </div>
@@ -85,7 +85,7 @@
             <mat-label>Segundo apellido:</mat-label>
             <input matInput [(ngModel)]="compa.lastName" placeholder="Last name" formControlName="lastName">
             @if (addressForm.controls['lastName'].hasError('required')) {
-              <mat-error>Last name is <strong>required</strong></mat-error>
+              <mat-error>Segundo applido es <strong>obligatorio</strong></mat-error>
             }
           </mat-form-field>
         </div>
@@ -97,7 +97,7 @@
             <textarea matInput [(ngModel)]="compa.address" placeholder="Address" formControlName="address"></textarea>
             <mat-hint align="end">{{compa.address.length}} / 200</mat-hint>
             @if (addressForm.controls['address'].hasError('required')) {
-              <mat-error>Address is <strong>required</strong></mat-error>
+              <mat-error>Dirección es<strong>obligatorio</strong></mat-error>
             }
           </mat-form-field>
         </div>
@@ -136,12 +136,12 @@
               }
             </mat-select>
             @if (addressForm.controls['state'].hasError('required')) {
-              <mat-error>State is <strong>required</strong></mat-error>
+              <mat-error>El estado es <strong>obligatorio</strong></mat-error>
             }
           </mat-form-field>
         </div>
       </div>
-      <div class="row">
+
         <div class="col">
           <mat-form-field class="full-width">
             <mat-label>Código Postal:<strong>(Longitud de 5)</strong></mat-label>
@@ -169,7 +169,6 @@
             <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
           </mat-form-field>
         </div>
-      </div>
       <div class="row">
         <div class="col">
           <mat-label>Envio:</mat-label>
@@ -189,6 +188,8 @@
           </mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
+        </div>
+        <div class="col">
           <mat-label>Habitantes:</mat-label>
           <!-- <mat-slider [(ngModel)]="minimo" formControlName="minimo" thumbLabel min="0" max="5000" step="1" showTickMarks #ngSlider> -->
             <mat-slider  formControlName="people" thumbLabel min="0" max="5000" step="1" showTickMarks discrete #ngSlider>

@@ -1,7 +1,7 @@
 import { Component, inject,ViewChild,OnInit } from '@angular/core';
 
-import { FormBuilder, Validators } from '@angular/forms';
-//import {ErrorStateMatcher} from '@angular/material/core';
+import { FormBuilder, Validators , AbstractControl} from '@angular/forms';
+
 
 import {MatSort} from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
@@ -41,8 +41,9 @@ export class TablaFormularioComponent implements OnInit  {
     address2: null,
     city: [null, Validators.required],
     state: [null, Validators.required],
-    postalCode: [null, Validators.compose([
-       Validators.required, Validators.minLength(5), Validators.maxLength(5)])
+    postalCode: [null, Validators.compose([  //numerico de longitud 5
+       Validators.required, Validators.minLength(5), Validators.maxLength(5),
+       CustomValidator.numeric])
      ],
     // postalCode: ["", [Validators.required,Validators.minLength(5), Validators.maxLength(5)]],
 
@@ -160,10 +161,27 @@ export class TablaFormularioComponent implements OnInit  {
     return this.addressForm.get('email');
   }
 
+ 
+
   getErrorMessage() {
-    return this.postalCode.hasError('required') ? 'Codigo postal requerido' :
+    return this.postalCode.hasError('patterm') ? 'Sólo numérico' :
       this.postalCode.hasError('maxlength') ? 'Mucha Longitud' : 
-        this.postalCode.hasError('minlength') ? 'Poca longitud' : '';
+        this.postalCode.hasError('minlength') ? 'Poca longitud' : 
+          this.postalCode.hasError('required') ? 'Código postal requerido' : '';
+          
+  }
+}
+
+export class CustomValidator{
+  // Number only validation
+  static numeric(control: AbstractControl) {
+    let val = control.value;
+
+    if (val === null || val === '') return null;
+
+    if (!val.toString().match(/^[0-9]+(\.?[0-9]+)?$/)) return { 'patterm': true };
+
+    return null;
   }
 }
 
