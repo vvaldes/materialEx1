@@ -22,7 +22,7 @@ import {EstadosService} from '../../servicio/estados.service';
 
 export class TablaFormularioComponent implements OnInit  {
   //Binding del formulario
-  compa : Compania = {id:0,company:"",firstName:"",lastName:"",address:"",address2:"",city:"",state:"",postalCode:"",shipping:0,people:0,date:new Date(Date.now())};
+  compa : Compania = {id:0,company:"",firstName:"",lastName:"",address:"",address2:"",city:"",state:"",postalCode:"",shipping:0,people:0,date:new Date(Date.now()),phone:""};
   //compas: Compania[]=[];   //Array de compañias
   compas = Companias;
   nombre = '';
@@ -49,7 +49,8 @@ export class TablaFormularioComponent implements OnInit  {
 
     datecreated: null,
     people: null,
-    shipping: ['free', Validators.required]
+    shipping: ['free', Validators.required],
+    phone: [null, Validators.pattern(/^\d{9}$/)]
     //email: new FormControl ('', [Validators.required, Validators.email,Validators.pattern(this.emailPattern)])
   });
 
@@ -136,7 +137,7 @@ export class TablaFormularioComponent implements OnInit  {
 
 
     inicializar() {
-      this.compa  = {id:0,company:"",firstName:"",lastName:"",address:"",address2:"",city:"",state:"",postalCode:"",shipping:0,people:0,date:new Date(Date.now())};
+      this.compa  = {id:0,company:"",firstName:"",lastName:"",address:"",address2:"",city:"",state:"",postalCode:"",shipping:0,people:0,date:new Date(Date.now()),phone:""};
       this.modificar = false;
     }
 

@@ -11,6 +11,7 @@ export interface Compania {
     shipping: number;
     people: number;
     date: Date;
+    phone?: string;
   }
 
   

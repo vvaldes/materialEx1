@@ -33,7 +33,19 @@
             }
           </mat-form-field>
         </div>
-      </div>
+          <!--quiero generar otra columna llamada telefono-->
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Teléfono:</mat-label>
+            <input matInput [(ngModel)]="compa.phone" placeholder="Phone" formControlName="phone">
+            <mat-error *ngIf="addressForm.controls['phone'].hasError('pattern')">Por favor ingrese un número de teléfono válido (ej. 123-456-7890)</mat-error>
+          </mat-form-field>
+        </div>
+
+
+
+        </div>
+      
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
