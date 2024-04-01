@@ -50,9 +50,13 @@ export class TablaFormularioComponent implements OnInit  {
     datecreated: null,
     people: null,
     shipping: ['free', Validators.required],
-    phone: [null, Validators.pattern(/^\d{9}$/)]
     //email: new FormControl ('', [Validators.required, Validators.email,Validators.pattern(this.emailPattern)])
-  });
+  
+    phone: [null, Validators.compose([
+      Validators.minLength(9), Validators.maxLength(10),
+      Validators.pattern(/^\d{9}$/)])
+    ]});
+    
 
   //tabla
   columnas: string[] = ['id', 'company','firstName', 'operaciones']; //asdf
@@ -74,6 +78,7 @@ export class TablaFormularioComponent implements OnInit  {
     this.dataSource = new MatTableDataSource<Compania>(this.compas);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+    
 
     this.inicializar();
   }
@@ -95,6 +100,7 @@ export class TablaFormularioComponent implements OnInit  {
      const data = this.dataSource.data;
      //this.dataSource.data.push(this.compa);
      this.compas.push(compa1);
+     this.compa.phone = this.addressForm.value.phone || '';
      //data.push(this.compa);
      //if (this.dataSource) {
      //   delete this.dataSource;

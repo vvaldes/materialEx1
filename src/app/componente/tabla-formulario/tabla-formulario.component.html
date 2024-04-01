@@ -201,8 +201,8 @@
         <div class="col">
           <mat-form-field class="full-width">
             <mat-label>Teléfono:</mat-label>
-            <input matInput [(ngModel)]="compa.phone" placeholder="Phone" formControlName="phone">
-            <mat-error *ngIf="addressForm.controls['phone'].hasError('pattern')">Por favor ingrese un número de teléfono válido (ej. 625510324)</mat-error>
+            <input matInput [(ngModel)]="compa.phone" placeholder="Phone" formControlName="phone" maxlength="10" >
+            <mat-error *ngIf="addressForm.controls['phone'].errors">Por favor ingrese un número de teléfono válido (ej. 625510324)</mat-error>
           </mat-form-field>
         </div>
 
