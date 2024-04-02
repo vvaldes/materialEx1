@@ -49,10 +49,66 @@
       <tr mat-header-row *matHeaderRowDef="columnas"></tr>
       <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator> 
   </div>
 
+<div class="row">
+  <div class="col">
+    <mat-form-field class="full-width">
+      <mat-label>Total de compañias:</mat-label>
+      <input matInput [value]="compas.length" disabled>
+    </mat-form-field>
+  </div>
+</div> 
 
+<div class="row">
+  <div class="col">
+    <table>
+      <tr>
+        <th>Frutas</th>
+        <th>Verduras</th>
+        <th>Frutas</th>
+        <th>Verduras</th>
+        <th>Frutas</th>
+      </tr>
+      <tr>
+        <td>Manzana</td>
+        <td>Zanahoria</td>
+        <td>Pera</td>
+        <td>Lechuga</td>
+        <td>Naranja</td>
+      </tr>
+      <tr>
+        <td>Plátano</td>
+        <td>Brócoli</td>
+        <td>Sandía</td>
+        <td>Espinaca</td>
+        <td>Uva</td>
+      </tr>
+      <tr>
+        <td>Fresa</td>
+        <td>Calabacín</td>
+        <td>Piña</td>
+        <td>Coliflor</td>
+        <td>Mango</td>
+      </tr>
+      <tr>
+        <td>Uva</td>
+        <td>Pepino</td>
+        <td>Cereza</td>
+        <td>Tomate</td>
+        <td>Kiwi</td>
+      </tr>
+      <tr>
+        <td>Limón</td>
+        <td>Pimiento</td>
+        <td>Manzana</td>
+        <td>Apio</td>
+        <td>Pera</td>
+      </tr>
+    </table>
+  </div>
+</div>
 
 <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="shipping-card">
@@ -147,24 +203,9 @@
             <mat-label>Código Postal:<strong>(Longitud de 5)</strong></mat-label>
             <input matInput #postalCode maxlength="5"  [(ngModel)]="compa.postalCode" placeholder="Postal Code"  
             formControlName="postalCode" required>
-            <!--<mat-error *ngIf="addressForm.controls['postalCode'].hasError('required')">
-              Codigo Postal  <strong>(Longitud de 5)</strong>
-            </mat-error>
-            <mat-error *ngIf="addressForm.controls['postalCode'].hasError('minlength') || addressForm.controls['postalCode'].hasError('maxlength')">
-              La longitud es de 5 números y obligatorio
-            </mat-error>  -->
             <div *ngIf="addressForm.controls['postalCode'].invalid && addressForm.controls['postalCode'].errors &&
                (addressForm.controls['postalCode'].dirty || addressForm.controls['postalCode'].touched)">
                 <mat-error *ngIf="addressForm.controls['postalCode'].invalid">{{getErrorMessage()}}</mat-error>
-              <!-- <mat-error *ngIf="addressForm.controls['postalCode'].hasError('required')">
-                Codigo Postal es requerido <strong>(Longitud de 5)</strong>
-              </mat-error>
-              <mat-error *ngIf="addressForm.controls['postalCode'].hasError('minlength')">
-                La longitud es de 5 números y obligatorio
-              </mat-error>
-              <mat-error *ngIf="addressForm.controls['postalCode'].hasError('maxlength')">
-                La longitud es de 5 números y obligatorio
-              </mat-error>  -->
             </div> 
             <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
           </mat-form-field>
@@ -174,9 +215,6 @@
           <mat-label>Envio:</mat-label>
           <mat-radio-group [(ngModel)]="compa.shipping" formControlName="shipping">
             <mat-radio-button   *ngFor="let op of shippings1" [value]="op.valor" name="gen">{{op.activo}}</mat-radio-button>
-            <!-- <mat-radio-button value="free">Free Shipping</mat-radio-button>
-            <mat-radio-button value="priority">Priority Shipping</mat-radio-button>
-            <mat-radio-button value="nextday">Next Day Shipping</mat-radio-button> -->
           </mat-radio-group>
         </div>
       </div>
@@ -191,11 +229,8 @@
         </div>
         <div class="col">
           <mat-label>Habitantes:</mat-label>
-          <!-- <mat-slider [(ngModel)]="minimo" formControlName="minimo" thumbLabel min="0" max="5000" step="1" showTickMarks #ngSlider> -->
             <mat-slider  formControlName="people" thumbLabel min="0" max="5000" step="1" showTickMarks discrete #ngSlider>
-            <!-- <input matSliderThumb /><input matSliderThumb (change)="minimomaximo()" #ngSliderThumb="matSliderThumb" />  -->
             <input matSliderThumb  [(value)]="compa.people"   #ngSliderThumb="matSliderThumb" />
-            <!-- <input matSliderThumb /><input matSliderThumb  #ngSliderThumb="matSliderThumb" /> -->
           </mat-slider>
         </div>
         <div class="col">

@@ -24,7 +24,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TablaComponent } from './componente/tabla/tabla.component';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import { getDutchPaginatorIntl } from './shared/paginator-int';
 import { MatSortModule } from '@angular/material/sort';
 import { TablaFormularioComponent } from './componente/tabla-formulario/tabla-formulario.component';
 
@@ -61,7 +62,8 @@ import { TablaFormularioComponent } from './componente/tabla-formulario/tabla-fo
   ],
   providers: [
     provideAnimationsAsync(),
-    { provide: LOCALE_ID, useValue: 'es' },
+      {provide: MatPaginatorIntl,useValue: getDutchPaginatorIntl()},
+      {provide: LOCALE_ID, useValue: 'es' },
   ],
   bootstrap: [AppComponent]
 })
